@@ -1,0 +1,11 @@
+###
+ # @Descripttion:
+ # @version:
+ # @Author: Murphy
+ # @Date: 2022-04-21 23:04:22
+ # @LastEditTime: 2022-04-21 23:05:38
+###
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx --no -- commitlint --edit "$1"
