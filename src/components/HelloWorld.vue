@@ -1,43 +1,24 @@
-<script setup lang="ts">
+<!--
+ * @Description:
+ * @version:
+ * @Author: Murphy
+ * @Date: 2022-04-21 12:08:59
+ * @LastEditTime: 2022-05-21 15:19:34
+-->
+<script setup lang="tsx">
 import { ref } from 'vue'
-
+import Foo from './foo'
 // eslint-disable-next-line no-undef
 defineProps<{ msg: string }>()
 
 const count = ref(0)
+const abc = <h1>abc</h1>
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a
-      href="https://code.visualstudio.com/"
-      target="_blank"
-    >VS Code</a>
-    +
-    <a
-      href="https://github.com/johnsoncodehk/volar"
-      target="_blank"
-    >Volar</a>
-  </p>
-
-  <p>See <code>README.md</code> for more information.</p>
-
-  <p>
-    <a
-      href="https://vitejs.dev/guide/features.html"
-      target="_blank"
-    >
-      Vite Docs
-    </a>
-    |
-    <a
-      href="https://v3.vuejs.org/"
-      target="_blank"
-    >Vue 3 Docs</a>
-  </p>
+  <abc />
+  <Foo msg="zhp" />
 
   <button
     type="button"
