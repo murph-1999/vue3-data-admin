@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-25 22:33:09
- * @LastEditTime: 2022-07-30 23:17:45
+ * @LastEditTime: 2022-08-11 14:55:19
 -->
 <template>
   <div class="login-container">
@@ -12,7 +12,7 @@
       :rules="rules"
       ref="form"
       :model="user"
-      size="medium"
+      size="small"
       @submit.prevent="handleSubmit"
     >
       <el-form-item prop="account">

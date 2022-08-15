@@ -12,6 +12,10 @@
     "isolatedModules": false,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
+    "types": [
+      "node",
+      "webpack-env"
+    ],
     "paths": {
       "@/*":[
       "src/*"

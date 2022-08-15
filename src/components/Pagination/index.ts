@@ -4,12 +4,12 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-07-31 12:40:13
- * @LastEditTime: 2022-07-31 12:43:44
+ * @LastEditTime: 2022-08-15 14:36:50
  */
-import { App } from '@vue/runtime-dom'
-import Component from './index.vue'
-export default {
-  install(app: App) {
-    app.component('AppPagination', Component)
-  }
-}
+
+export { default as AppPagination } from './index.vue'
+// export default {
+//   install(app: App) {
+//     app.component('AppPagination', Component)
+//   }
+// }

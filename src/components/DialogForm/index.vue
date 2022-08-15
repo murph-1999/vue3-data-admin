@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-11 09:06:00
- * @LastEditTime: 2022-08-11 10:11:13
+ * @LastEditTime: 2022-08-15 15:04:37
 -->
 <template>
   <el-dialog
@@ -32,7 +32,7 @@ import type { IElDialog } from '@/types/element-plus'
 
 const dialog = ref<IElDialog|null>(null)
 const handleCancel = () => {
-  if (dialog.value.visible) {
+  if (dialog.value?.visible) {
     dialog.value.visible = false
   }
   emit('cancel')

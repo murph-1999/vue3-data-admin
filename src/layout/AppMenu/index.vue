@@ -4,7 +4,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-19 16:35:01
- * @LastEditTime: 2022-08-02 21:57:29
+ * @LastEditTime: 2022-08-11 16:31:41
 -->
 <template>
   <logo
@@ -18,7 +18,7 @@
     text-color="#fff"
     @open="handleOpen"
     @close="handleClose"
-    :collapse="$store.state.isCollapse"
+    :collapse="store.state.isCollapse"
     router
     ref="elMenu"
     @select="menuSelect"
@@ -47,16 +47,18 @@ import logo from './components/AppLogo.vue'
 import MenuItem from './components/MenuItem.vue'
 import PermissionRoutes from '@/router/modules/data-center'
 import { useRoute } from 'vue-router'
+import { useStore } from '../../store'
+const store = useStore()
 
 onMounted(() => {
   console.log(PermissionRoutes)
 })
 
 const route = useRoute()
-let activeIndex = ref('')
-activeIndex = route.path
-const menuSelect = (index) => {
-  activeIndex = 'data-center/' + index
+const activeIndex = ref('')
+activeIndex.value = route.path
+const menuSelect = (index: string) => {
+  activeIndex.value = 'data-center/' + index
   console.log('当前选中index', activeIndex)
 }
 const handleOpen = (key: string, keyPath: string[]) => {

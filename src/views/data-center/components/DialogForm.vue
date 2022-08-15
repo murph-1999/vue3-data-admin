@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-07-31 17:22:42
- * @LastEditTime: 2022-08-11 10:16:39
+ * @LastEditTime: 2022-08-15 14:59:43
 -->
 <template>
   <app-dialog-form
@@ -262,7 +262,7 @@ const cancel = () => {
 const handleDialogClosed = () => {
   emit('update:admin-id', null)
   ruleFormRef.value?.clearValidate()
-  ruleFormRef.value.resetFields()
+  ruleFormRef.value?.resetFields()
 }
 </script>
 <style lang='scss' scoped>

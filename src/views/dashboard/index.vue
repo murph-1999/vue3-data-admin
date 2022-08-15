@@ -3,16 +3,16 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-25 22:32:58
- * @LastEditTime: 2022-07-30 15:52:50
+ * @LastEditTime: 2022-08-11 16:28:54
 -->
 
 <template>
   <h1>首页</h1>
   <div class="flag" />
   <el-button>测试</el-button>
-  <h2>{{ $store.state.count }}</h2>
   <h2>{{ store.state.count }}</h2>
-  <h1>{{ $store.state.foo }}</h1>
+  <h2>{{ store.state.count }}</h2>
+  <h1>{{ store.state.foo }}</h1>
   <img src="@/assets/logo.png">
   <div class="bg" />
 </template>

@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-25 22:54:30
- * @LastEditTime: 2022-07-30 22:51:33
+ * @LastEditTime: 2022-08-15 10:31:43
  */
 import { createStore, Store, useStore as baseUseStore } from 'vuex'
 import { InjectionKey } from 'vue'
@@ -14,11 +14,11 @@ const state = {
   count: 0,
   foo: 'doo',
   isCollapse: false,
-  user: getItem<ILoginInfo>('user')
+  user: getItem<ILoginInfo>(USER)
 }
 export type State = typeof state
 
-// 定义injection key
+// 定义injection key 为什么需要
 export const key: InjectionKey<Store<State>> = Symbol('store')
 
 export const store = createStore<State>({

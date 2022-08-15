@@ -1,26 +1,26 @@
 import { RouteRecordRaw, RouterView } from 'vue-router'
 
 /*
- * @Description:
+ * @Description:观点管理
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-19 17:11:33
- * @LastEditTime: 2022-05-21 10:02:23
+ * @LastEditTime: 2022-08-11 16:18:46
  */
 const routes: RouteRecordRaw[] = [
   {
-    path: 'viewpoint',
+    path: '/viewpoint',
     name: 'viewpoint',
     component: RouterView,
     children: [
       {
-        path: 'stock',
-        name: 'stock',
-        component: () => import('@/views/data-center/active/index.vue')
+        path: 'role',
+        name: 'role',
+        component: () => import('@/views/system/role/roleIndex.vue')
       }, {
-        path: 'industry',
-        name: 'industry',
-        component: () => import('@/views/data-center/user/index.vue')
+        path: 'account',
+        name: 'account',
+        component: () => import('@/views/system/account/accountIndex.vue')
       }
     ]
   }

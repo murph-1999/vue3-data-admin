@@ -5,11 +5,11 @@ import { RouteRecordRaw, RouterView } from 'vue-router'
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-19 17:11:33
- * @LastEditTime: 2022-08-02 21:42:41
+ * @LastEditTime: 2022-08-11 16:18:37
  */
 const routes: RouteRecordRaw[] = [
   {
-    path: '',
+    path: '/data-center',
     name: 'dataCenter',
     component: RouterView,
     meta: { title: '数据中心', requiredAuth: true },
