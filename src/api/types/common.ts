@@ -3,12 +3,11 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-02 16:50:27
- * @LastEditTime: 2022-08-11 15:00:07
+ * @LastEditTime: 2022-08-29 16:51:12
  */
 
 export interface ILoginInfo {
-
-  roles: string[],
+  menu: API.Menu[],
   avatar: string,
   name: string,
   introduction: string

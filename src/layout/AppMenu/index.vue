@@ -4,7 +4,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-19 16:35:01
- * @LastEditTime: 2022-08-11 16:31:41
+ * @LastEditTime: 2022-08-30 20:00:54
 -->
 <template>
   <logo
@@ -18,7 +18,7 @@
     text-color="#fff"
     @open="handleOpen"
     @close="handleClose"
-    :collapse="store.state.isCollapse"
+    :collapse="store.isCollapse"
     router
     ref="elMenu"
     @select="menuSelect"
@@ -36,7 +36,7 @@
       </el-icon>
       <span>机构管理</span>
     </el-menu-item> -->
-    <menu-item :data="PermissionRoutes" />
+    <!-- <menu-item :data="PermissionRoutes" /> -->
   </el-menu>
 </template>
 
@@ -44,14 +44,13 @@
 
 import { onMounted, ref } from 'vue'
 import logo from './components/AppLogo.vue'
-import MenuItem from './components/MenuItem.vue'
-import PermissionRoutes from '@/router/modules/data-center'
+// import MenuItem from './components/MenuItem.vue'
+// import PermissionRoutes from '@/router/staticModules/data-center'
 import { useRoute } from 'vue-router'
-import { useStore } from '../../store'
-const store = useStore()
+import { useConfigStore } from '@/store/modules/config'
+const store = useConfigStore()
 
 onMounted(() => {
-  console.log(PermissionRoutes)
 })
 
 const route = useRoute()

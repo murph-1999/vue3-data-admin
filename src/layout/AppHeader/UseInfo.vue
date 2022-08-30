@@ -3,11 +3,11 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-07-30 17:29:50
- * @LastEditTime: 2022-07-30 22:55:57
+ * @LastEditTime: 2022-08-20 15:22:19
 -->
 <template>
   <el-dropdown>
-    <span class="el-dropdown-link">{{ $store.state.user?.name }}</span>
+    <span class="el-dropdown-link">admin</span>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item>个人中心</el-dropdown-item>
@@ -22,9 +22,10 @@
 <script lang='ts' setup>
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
-import { useStore } from '@/store'
+// import { useUserStore } from '@/store/modules/user'
+
 const router = useRouter()
-const store = useStore()
+// const store = useUserStore()
 const handleLogout = () => {
   ElMessageBox.confirm(
     '确定退出登录吗',
@@ -39,7 +40,7 @@ const handleLogout = () => {
       // 退出登录接口
       router.push({ name: 'login' })
       // 清除用户信息
-      store.commit('setUser', null)
+      // store.commit('setUser', null)
       ElMessage({
         type: 'success',
         message: '退出登录成功'

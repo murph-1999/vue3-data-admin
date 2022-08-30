@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-22 16:29:08
- * @LastEditTime: 2022-05-24 16:51:17
+ * @LastEditTime: 2022-08-20 16:15:54
 -->
 <template>
   <el-icon
@@ -21,14 +21,14 @@
 </template>
 
 <script lang='ts' setup>
-import { useStore } from '@/store'
+import { useConfigStore } from '@/store/modules/config'
 import { computed } from 'vue'
-const store = useStore()
+const store = useConfigStore()
 const isCollapse = computed(() => {
-  return store.state.isCollapse
+  return store.isCollapse
 })
 const handleChange = () => {
-  store.commit('setIsCollapse', !store.state.isCollapse)
+  store.switch(!store.isCollapse)
 }
 </script>
 <style lang='scss' scoped>

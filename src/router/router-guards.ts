@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-15 11:10:53
- * @LastEditTime: 2022-08-15 11:36:14
+ * @LastEditTime: 2022-08-20 16:18:38
  */
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -14,9 +14,8 @@ nprogress.configure({ showSpinner: false }) // NProgress Configuration
 
 export function createRouterGuards (router: Router, whiteNameList: WhiteNameList) {
   router.beforeEach((to, from) => {
-    console.log(to, store.state.user, to.meta.requiresAuth)
     nprogress.start()
-    if (to.meta.requiredAuth && !store.state.user) {
+    if (to.meta.requiredAuth) {
       // 此路由需要授权，请检查是否已登录
       // 如果没有，则重定向到登录页面
       return {

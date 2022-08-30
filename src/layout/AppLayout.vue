@@ -3,14 +3,14 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-19 15:39:04
- * @LastEditTime: 2022-05-22 16:39:57
+ * @LastEditTime: 2022-08-30 20:01:10
 -->
 
 <template>
   <div class="common-layout">
     <el-container>
       <el-aside>
-        <AppMenu />
+        <!-- <AppMenu /> -->
       </el-aside>
       <el-container>
         <el-header><AppHeader /></el-header>
@@ -24,7 +24,7 @@
 </template>
 
 <script lang='ts' setup>
-import AppMenu from './AppMenu/index.vue'
+// import AppMenu from './AppMenu/index.vue'
 import AppHeader from './AppHeader/index.vue'
 </script>
 <style lang='scss' scoped>

@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-18 10:16:19
- * @LastEditTime: 2022-05-19 17:03:50
+ * @LastEditTime: 2022-08-20 14:53:20
  */
 module.exports = {
   globals: {
@@ -37,9 +37,11 @@ module.exports = {
   },
   // 重写api文件中驼峰命名法的eslint验证
   overrides: [{
-    files: ['src/api/**/*.ts'],
+    files: ['*.ts', 'src/api/**/*.ts', '*tsx'],
     rules: {
-      camelcase: 'off'
+      camelcase: 'off',
+      'no-undef': 'off',
+      'no-unused-vars': 'off'
     }
   }]
 }

@@ -11,6 +11,8 @@
     "resolveJsonModule": true,
     "isolatedModules": false,
     "esModuleInterop": true,
+    "noImplicitAny": false,
+
     "lib": ["esnext", "dom"],
     "types": [
       "node",
@@ -21,6 +23,7 @@
       "src/*"
     ]}
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx","**/*.d.ts", "types/**/*.d.ts",
+  "types/**/*.ts", "src/**/*.vue", "mock/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

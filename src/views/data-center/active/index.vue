@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-19 17:09:14
- * @LastEditTime: 2022-08-15 14:52:45
+ * @LastEditTime: 2022-08-15 16:00:56
 -->
 <template>
   <div>
@@ -83,10 +83,9 @@
 
 <script lang='ts' setup>
 import Foo from '@/components/foo'
-import { reactive, ref } from '@vue/reactivity'
+import { reactive, ref, onMounted } from 'vue'
 // import { getAdmin } from '@/api/admin'
 import type { Admin, IListParams } from '@/api/types/admin'
-import { onMounted } from '@vue/runtime-core'
 import DialogForm from '../components/DialogForm.vue'
 const tableData = [
   {
@@ -142,7 +141,6 @@ onMounted(() => {
 })
 const loadList = async () => {
   console.log(listParams)
-  // const data = await getAdmin(listParams)
   list.value = tableData
 }
 

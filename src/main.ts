@@ -3,15 +3,15 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-17 17:01:18
- * @LastEditTime: 2022-08-15 15:02:57
+ * @LastEditTime: 2022-08-24 16:33:48
  */
 import { createApp } from 'vue'
 // import AppPagination from '@/components/Pagination/index'
 // import AppDialogForm from './components/DialogForm/index'
 import App from './App.vue'
 import { setupRouter } from './router/index'
+import { setupStore } from '@/store'
 import { setupCustomComponents } from '@/plugins/customComponent'
-import { store, key } from './store'
 import './styles/index.scss'
 import elementPlus from './plugins/element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
@@ -28,9 +28,10 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 async function setupApp () {
+  setupStore(app)
+
   await setupRouter(app)
-  app.use(store, key)
-    .use(elementPlus)
+  app.use(elementPlus)
   app.mount('#app')
 }
 setupPlugins()

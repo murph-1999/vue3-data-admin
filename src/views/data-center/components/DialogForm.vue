@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-07-31 17:22:42
- * @LastEditTime: 2022-08-15 14:59:43
+ * @LastEditTime: 2022-08-15 16:25:34
 -->
 <template>
   <app-dialog-form
@@ -153,6 +153,8 @@
 import { ref, reactive } from 'vue'
 import type { PropType } from 'vue'
 import type { IElForm, IFormItemRule } from '@/types/element-plus'
+
+const ruleFormRef = ref<IElForm>()
 const ruleForm = reactive({
   name: 'Hello',
   region: '',
@@ -164,8 +166,9 @@ const ruleForm = reactive({
   resource: '',
   desc: ''
 })
+
 const formSize = ref('default')
-const ruleFormRef = ref < IElForm | null >(null)
+// const ruleFormRef = ref < IElForm | null >(null)
 const rules = ref<IFormItemRule>({
   name: [
     { required: true, message: 'Please input Activity name', trigger: 'blur' },
@@ -220,7 +223,12 @@ const rules = ref<IFormItemRule>({
     { required: true, message: 'Please input activity form', trigger: 'blur' }
   ]
 })
-
+const props = defineProps({
+  adminId: {
+    type: Number as PropType<number|null>,
+    default: null
+  }
+})
 const submitForm = async (formEl: IElForm | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
@@ -241,12 +249,7 @@ const options = Array.from({ length: 10000 }).map((_, idx) => ({
   value: `${idx + 1}`,
   label: `${idx + 1}`
 }))
-const props = defineProps({
-  adminId: {
-    type: Number as PropType<number|null>,
-    default: null
-  }
-})
+
 interface EmitsType{
   (e:'update:admin-id', value:number|null):void
 }

@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-25 22:33:09
- * @LastEditTime: 2022-08-11 14:55:19
+ * @LastEditTime: 2022-08-20 16:32:49
 -->
 <template>
   <div class="login-container">
@@ -15,9 +15,9 @@
       size="small"
       @submit.prevent="handleSubmit"
     >
-      <el-form-item prop="account">
+      <el-form-item prop="username">
         <el-input
-          v-model="user.account"
+          v-model="user.username"
           placeholder="请输入用户名"
         >
           <template #prefix>
@@ -27,7 +27,7 @@
       </el-form-item>
       <el-form-item>
         <el-input
-          v-model="user.pwd"
+          v-model="user.password"
           placeholder="请输入密码"
         >
           <template #prefix>
@@ -50,27 +50,29 @@
 </template>
 <script lang="ts" setup>
 // 接口
-import { login } from '@/api/common'
 // 获取定义的接口类型，这里必须要加上type
 
 import { ref, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElForm } from 'element-plus'
 import type { IElForm, IFormItemRule } from '@/types/element-plus'
-import { store } from '@/store'
 // 什么时候能获取到form.value
+import { useUserStore } from '@/store/modules/user'
+
 // 获取子组件el-form类型，获取其可用方法等
 const router = useRouter()
 const route = useRoute()
+const userStore = useUserStore()
+
 const form = ref < IElForm | null >(null)
 const user = reactive({
-  account: 'admin',
-  pwd: '123456'
+  username: 'admin',
+  password: '123456'
 })
 const loading = ref(false)
 const rules = ref<IFormItemRule>({
-  account: [{ required: true, message: '请输入账号', trigger: 'change' }],
-  pwd: [{ required: true, message: '请输入密码', trigger: 'change' }]
+  username: [{ required: true, message: '请输入账号', trigger: 'change' }],
+  password: [{ required: true, message: '请输入密码', trigger: 'change' }]
 })
 // 进入首页
 // const list = ref<ILoginInfo["roles"]>([]);
@@ -81,9 +83,10 @@ const handleSubmit = async () => {
   // login().then((res) => {
   //   console.log("res", res);
   // });
-  const res = await login().finally(() => { loading.value = false })
-
-  store.commit('setUser', res)
+  // const res = await login().finally(() => { loading.value = false })
+  // store.commit('setUser', res)
+  await userStore.login(user)
+  loading.value = false
   let redirect = route.query.redirect || '/'
   // router.replace({ name: 'dataCenter' })
   if (typeof redirect !== 'string') {
