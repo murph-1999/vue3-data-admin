@@ -7,7 +7,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import RouterView from '@/layout/routerView/index.vue'
 import { isUrl } from '@/utils/is'
 import { uniqueSlash } from '@/utils/urlUtils'
-import { constantRouterComponents } from '@/router/asyncModules/index'
+import constantRouterComponents from '@/router/asyncModules/system'
 import common from '@/router/staticModules'
 import router, { routes } from '@/router/index'
 import NotFound from '@/views/error/404.vue'
@@ -83,6 +83,7 @@ export function filterAsyncRoute (
 
         // 如果是页面
       } else if (item.type === 1) {
+        // 设置组件
         const Component = constantRouterComponents[viewPath] || NotFound
         route.component = Component
 
@@ -109,10 +110,9 @@ export const generatorDynamicRouter = (asyncMenus: API.Menu[]) => {
   try {
     const routeList = filterAsyncRoute(asyncMenus)
     const layout = routes.find((item) => item.name === 'Layout')!
-    console.log('根据后端返回的权限路由生成', routeList, layout)
+    //  console.log('根据后端返回的权限路由生成', routeList, layout)
     // 给公共路由添加namePath
     generatorNamePath(common)
-    console.log(common)
     const menus = [...common, ...routeList, ...endRoutes]
     layout.children = menus
     const removeRoute = router.addRoute(layout)
@@ -129,7 +129,7 @@ export const generatorDynamicRouter = (asyncMenus: API.Menu[]) => {
     layout.children = [...filterRoutes]
     // 重新添加拍平后的路由
     router.addRoute(layout)
-    console.log('所有路由', router.getRoutes())
+    console.log('所有路由', layout.children)
 
     return Promise.resolve({
       menus,

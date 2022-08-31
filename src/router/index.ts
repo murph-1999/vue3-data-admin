@@ -3,10 +3,9 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-25 22:30:24
- * @LastEditTime: 2022-08-30 20:33:09
+ * @LastEditTime: 2022-08-31 10:55:14
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import AppLayout from '@/layout/AppLayout.vue'
 import outsideLayout from './outsideLayout'
 import { whiteNameList } from './constant'
 import { createRouterGuards } from './router-guards'
@@ -26,7 +25,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Layout',
-    component: AppLayout,
+    component: () => import(/* webpackChunkName: "layout" */'@/layout/index.vue'),
     redirect: '/dashboard/welcome',
     meta: { requiredAuth: true, title: 'layout' },
     children: []
@@ -35,7 +34,7 @@ export const routes: RouteRecordRaw[] = [
   ...outsideLayout
 ]
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory(''),
   routes
 })
 

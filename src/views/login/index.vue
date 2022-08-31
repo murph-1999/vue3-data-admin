@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-25 22:33:09
- * @LastEditTime: 2022-08-20 16:32:49
+ * @LastEditTime: 2022-08-31 10:19:03
 -->
 <template>
   <div class="login-container">
@@ -87,12 +87,14 @@ const handleSubmit = async () => {
   // store.commit('setUser', res)
   await userStore.login(user)
   loading.value = false
-  let redirect = route.query.redirect || '/'
-  // router.replace({ name: 'dataCenter' })
-  if (typeof redirect !== 'string') {
-    redirect = '/'
-  }
-  router.replace(redirect)
+  // let redirect = route.query.redirect || '/'
+  // // router.replace({ name: 'dataCenter' })
+  // if (typeof redirect !== 'string') {
+  //   redirect = '/'
+  // }
+  // router.replace(redirect)
+
+  router.replace((route.query.redirect as string) ?? '/')
 }
 </script>
 <style lang="scss" scoped>

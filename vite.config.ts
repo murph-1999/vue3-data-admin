@@ -3,13 +3,14 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-17 17:01:18
- * @LastEditTime: 2022-08-29 15:29:50
+ * @LastEditTime: 2022-08-31 11:28:10
  */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import eslintPlugin from 'vite-plugin-eslint'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { viteMockServe } from 'vite-plugin-mock'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 
 // 在ts模块中加载node核心模块需要安装node的类型补充模块
 import path from 'path'
@@ -19,6 +20,7 @@ import { env } from 'process'
 export default defineConfig({
   plugins: [
     vue(),
+    DefineOptions(),
     eslintPlugin({
       // 配置选项
       cache: false,

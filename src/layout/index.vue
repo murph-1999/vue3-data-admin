@@ -3,17 +3,16 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-19 15:39:04
- * @LastEditTime: 2022-08-30 20:01:10
+ * @LastEditTime: 2022-08-31 10:57:59
 -->
-
 <template>
   <div class="common-layout">
     <el-container>
       <el-aside>
-        <!-- <AppMenu /> -->
+        <Menu />
       </el-aside>
       <el-container>
-        <el-header><AppHeader /></el-header>
+        <el-header><Header /></el-header>
         <el-main>
           <router-view />
         </el-main>
@@ -24,8 +23,8 @@
 </template>
 
 <script lang='ts' setup>
-// import AppMenu from './AppMenu/index.vue'
-import AppHeader from './AppHeader/index.vue'
+import Menu from './menu/index.vue'
+import Header from './header/index.vue'
 </script>
 <style lang='scss' scoped>
 .el-footer,

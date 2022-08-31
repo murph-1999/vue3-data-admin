@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-19 16:02:23
- * @LastEditTime: 2022-08-29 19:47:44
+ * @LastEditTime: 2022-08-31 10:34:29
  */
 import { type RouteRecordRaw } from 'vue-router'
 import { defineStore } from 'pinia'
@@ -56,13 +56,13 @@ export const useUserStore = defineStore({
       this.perms = []
       this.menus = []
       this.userInfo = {}
-      // Storage.clear()
+      Storage.clear()
     },
     /** 登录成功保存token */
     setToken (token: string) {
       this.token = token ?? ''
-      // const ex = 7 * 24 * 60 * 60 * 1000
-      // setItem(ACCESS_TOKEN_KEY, this.token, ex)
+      const ex = 7 * 24 * 60 * 60 * 1000
+      Storage.set(ACCESS_TOKEN_KEY, this.token, ex)
     },
     /** 登录 */
     async login (params: API.LoginParams) {
@@ -83,7 +83,7 @@ export const useUserStore = defineStore({
         this.userInfo = data
         // 通过id生成动态路由
         const generatorResult = await generatorDynamicRouter(data.menu)
-        // this.menus = generatorResult.menus.filter((item) => !item.meta?.hideInMenu)
+        this.menus = generatorResult.menus.filter((item) => !item.meta?.hideInMenu)
         return { data }
       } catch (error) {
         return Promise.reject(error)

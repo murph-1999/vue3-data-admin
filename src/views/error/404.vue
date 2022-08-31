@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-18 10:55:41
- * @LastEditTime: 2022-08-20 16:20:57
+ * @LastEditTime: 2022-08-31 15:13:19
 -->
 <template>
   <div class="page-container">
@@ -18,7 +18,7 @@
       </RouterLink>
     </div>
     <img
-      src="~@/assets/404.gif"
+      src="../../assets/404.gif"
       alt=""
     >
   </div>
