@@ -1,29 +1,90 @@
 <!--
- * @Description:
+ * @Description:breadcrumb merge menu
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-24 15:53:48
- * @LastEditTime: 2022-08-15 16:28:30
+ * @LastEditTime: 2022-09-01 15:31:59
 -->
 <template>
   <el-breadcrumb separator="/">
-    <el-breadcrumb-item
-      v-for="item in routes"
-      :key="item.path"
+    <template
+      v-for="(item) in menus"
+      :key="item?.name"
     >
-      {{ item.meta.title }}
-    </el-breadcrumb-item>
+      <el-breadcrumb-item>
+        {{ item.meta?.title }}
+        <template
+          v-if="item.children?.length"
+          #overlay
+        >
+          <el-menu :default-active="activeIndex">
+            <el-sub-menu>
+              <template
+                v-for="childItem in item?.children"
+                :key="childItem.name"
+              >
+                <el-menu-item
+                  v-if="!childItem.meta?.hideInMenu"
+                  :index="childItem.name"
+                  @click="clickMenuItem(childItem)"
+                >
+                  {{ childItem.meta?.title }}
+                </el-menu-item>
+              </template>
+            </el-sub-menu>
+          </el-menu>
+        </template>
+      </el-breadcrumb-item>
+    </template>
   </el-breadcrumb>
 </template>
 
 <script lang='ts' setup>
-import { computed } from '@vue/runtime-core'
-import { useRouter } from 'vue-router'
+import { computed, ref } from 'vue'
+import { RouteRecordRaw, useRoute, useRouter } from 'vue-router'
+import { useUserStore } from '@/store/modules/user'
+
+const route = useRoute()
 const router = useRouter()
-console.log(router.currentRoute.value.matched)
-const routes = computed(() => {
-  return router.currentRoute.value.matched.filter(item => item.meta.title)
+const userStore = useUserStore()
+const activeIndex = ref('')
+activeIndex.value = route.path
+
+const menus = computed(() => {
+  if (route.meta?.namePath) {
+    let children = userStore.menus
+    const paths = route.meta.namePath?.map((item) => {
+      const a = children.find((n) => n.name === item)
+      children = a?.children || []
+      return a
+    })
+    return [
+      // {
+      //   name: '__index',
+      //   meta: {
+      //     title: 'vue'
+      //   },
+      //   children: userStore.menus
+      // },
+      ...paths
+    ]
+  }
+  return route.matched
 })
+
+const clickMenuItem = (item:RouteRecordRaw) => {
+  if (item?.name === route.name) return
+  if (/http(s)?:/.test(item?.name as string)) {
+    window.open(item.name as string)
+  } else if (item?.name) {
+    router.push({ name: item.name })
+  }
+}
 </script>
 <style lang='scss' scoped>
+  .el-sub-menu{
+    position:absolute;
+    z-index: 999;
+
+  }
 </style>

@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-07-31 12:40:19
- * @LastEditTime: 2022-07-31 16:41:50
+ * @LastEditTime: 2022-09-01 16:32:03
 -->
 <template>
   <el-pagination
@@ -61,14 +61,14 @@ interface EmitType {
 }
 const emit = defineEmits<EmitType>()
 const handleSizeChange = (page: number) => {
-  emit('update:page', 12)
+  emit('update:page', 12, '123')
 
   props.loadList()
   console.log(`${page} items per page`)
 }
 const handleCurrentChange = (size: number) => {
   // 如何限定第二个参数的类型
-  emit('update:page', 1)
+  emit('update:page', 1, '123')
   emit('update:limit', size)
   props.loadList()
   console.log(`current page: ${size}`)

@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-07-30 17:29:50
- * @LastEditTime: 2022-08-20 15:22:19
+ * @LastEditTime: 2022-09-01 15:09:38
 -->
 <template>
   <el-dropdown>
@@ -55,4 +55,7 @@ const handleLogout = () => {
 }
 </script>
 <style lang='scss' scoped>
+  .el-dropdown{
+    float: right;
+  }
 </style>

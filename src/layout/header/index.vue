@@ -3,13 +3,19 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-22 16:38:11
- * @LastEditTime: 2022-07-30 17:35:12
+ * @LastEditTime: 2022-09-01 15:39:43
 -->
 <template>
-  <toggle-sidebar />
-  <bread-crumb />
-  <use-info />
-  <full-screen />
+  <div class="header-wrapper">
+    <div>
+      <toggle-sidebar />
+      <bread-crumb />
+    </div>
+    <div>
+      <use-info />
+      <full-screen />
+    </div>
+  </div>
 </template>
 
 <script lang='ts' setup>
@@ -19,5 +25,10 @@ import FullScreen from './FullScreen.vue'
 import UseInfo from './UseInfo.vue'
 </script>
 <style lang='scss' scoped>
-
+.header-wrapper{
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
 </style>

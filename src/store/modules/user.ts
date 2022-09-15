@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-19 16:02:23
- * @LastEditTime: 2022-08-31 10:34:29
+ * @LastEditTime: 2022-09-01 10:17:49
  */
 import { type RouteRecordRaw } from 'vue-router'
 import { defineStore } from 'pinia'
@@ -84,6 +84,7 @@ export const useUserStore = defineStore({
         // 通过id生成动态路由
         const generatorResult = await generatorDynamicRouter(data.menu)
         this.menus = generatorResult.menus.filter((item) => !item.meta?.hideInMenu)
+        console.log('menus', this.menus)
         return { data }
       } catch (error) {
         return Promise.reject(error)

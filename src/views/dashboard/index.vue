@@ -3,20 +3,54 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-25 22:32:58
- * @LastEditTime: 2022-08-24 16:42:28
+ * @LastEditTime: 2022-09-01 17:10:22
 -->
 
 <template>
-  <h1>首页</h1>
+  <div>首页</div>
+  <AppFileUpload />
+  <input
+    id="uploadFile"
+    type="file"
+    accept="image/*"
+  >
+  <el-button
+    id="submit"
+    @click="uploadFile()"
+  >
+    上传文件
+  </el-button>
   <div class="flag" />
-  <el-button>测试</el-button>
-
-  <img src="@/assets/logo.png">
-  <div class="bg" />
 </template>
 <script lang="ts" setup>
+import axios from 'axios'
+const uploadFile = () => {
+  const uploadFileEle = document.querySelector('#uploadFile') as HTMLInputElement
+  if (!uploadFileEle?.files?.length) return
+  const file = uploadFileEle.files[0]
+  console.log(file)
+  upload({
+    url: 'https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15',
+    file
+  })
+}
 
-// 显式告诉ts， 这里是lang="ts" 要加上type 类型不能当做值给js用
+const upload = ({ url, file, fieldName = 'file' }) => {
+  const formData = new FormData()
+  formData.set(fieldName, file)
+  axios.request({
+    url,
+    method: 'post',
+    data: formData,
+    // 监听上传进度
+    onUploadProgress: function (progressEvent) {
+      const percentCompleted = Math.round(
+        (progressEvent.loaded * 100) / progressEvent.total
+      )
+      console.log(percentCompleted)
+    }
+  })
+}
 
 </script>
 
@@ -25,9 +59,7 @@
   height: 200px;
   background: url("@/assets/logo.png");
 }
-h1 {
-  color: $color;
-}
+
 .flag {
   width: 36px;
   height: 18px;

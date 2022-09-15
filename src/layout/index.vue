@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-19 15:39:04
- * @LastEditTime: 2022-08-31 10:57:59
+ * @LastEditTime: 2022-09-01 15:34:23
 -->
 <template>
   <div class="common-layout">
@@ -30,8 +30,11 @@ import Header from './header/index.vue'
 .el-footer,
 .el-header {
   background-color: #b3c0d1;
-}
 
+}
+.el-header{
+  height: 50px;
+}
 .el-aside {
   background-color: #545c64;
   width: auto;
