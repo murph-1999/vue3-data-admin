@@ -3,23 +3,12 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-21 12:08:59
- * @LastEditTime: 2022-05-21 15:19:34
+ * @LastEditTime: 2022-09-26 14:17:25
 -->
-<script setup lang="tsx">
-import { ref } from 'vue'
-import Foo from './foo'
-// eslint-disable-next-line no-undef
-defineProps<{ msg: string }>()
-
-const count = ref(0)
-const abc = <h1>abc</h1>
-</script>
-
 <template>
   <h1>{{ msg }}</h1>
   <abc />
   <Foo msg="zhp" />
-
   <button
     type="button"
     @click="count++"
@@ -31,6 +20,16 @@ const abc = <h1>abc</h1>
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
 </template>
+
+<script setup lang="tsx">
+import { ref } from 'vue'
+import Foo from './foo'
+// eslint-disable-next-line no-undef
+defineProps<{ msg: string }>()
+
+const count = ref(0)
+const abc = <h1>abc</h1>
+</script>
 
 <style scoped>
 a {

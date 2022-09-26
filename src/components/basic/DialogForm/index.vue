@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-11 09:06:00
- * @LastEditTime: 2022-08-15 15:04:37
+ * @LastEditTime: 2022-09-26 14:35:56
 -->
 <template>
   <el-dialog
@@ -27,7 +27,6 @@
 
 <script lang='ts' setup>
 import { ref } from 'vue'
-
 import type { IElDialog } from '@/types/element-plus'
 
 const dialog = ref<IElDialog|null>(null)

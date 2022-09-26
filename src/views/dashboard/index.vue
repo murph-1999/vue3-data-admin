@@ -3,11 +3,42 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-25 22:32:58
- * @LastEditTime: 2022-09-01 17:10:22
+ * @LastEditTime: 2022-09-26 15:44:55
 -->
 
 <template>
-  <div>首页</div>
+  <div v-color="color">
+    首页
+  </div>
+
+  <my-button
+    content="确认按钮"
+    :auto-loading="true"
+    round
+    @click="submit"
+    auto-confirm
+    @confirm="handleConfirm"
+  >
+    确认
+  </my-button>
+  <functional-debounce
+    time="3000"
+    :before="beforeFun"
+  >
+    <input
+      type="text"
+      v-model="inputValue"
+      @input="inputChange"
+    >
+  </functional-debounce>
+  <debounce-input
+    placeholder="
+    防抖"
+    prefix-icon="el-icon-search"
+    @input="inputEve"
+  />
+  <h1>{{ inputValue }}</h1>
+  Mouse position is at: {{ x }}, {{ y }}
   <AppFileUpload />
   <input
     id="uploadFile"
@@ -23,7 +54,35 @@
   <div class="flag" />
 </template>
 <script lang="ts" setup>
+import { useMouse } from '@/composables/mouse.js'
+import DebounceInput from '../../components/basic/DebounceInput/index.vue'
+import FunctionalDebounce from '@/components/basic/FunctionalDebounce/index'
+
 import axios from 'axios'
+import { ref } from 'vue'
+const handleConfirm = (e) => {
+  console.log(e)
+}
+const submit = (done) => {
+  console.log(done)
+  setTimeout(() => {
+    done()
+  }, 2000)
+}
+const inputValue = ref('0')
+const inputEve = (value) => {
+  console.log(value)
+  inputValue.value = value
+}
+const inputChange = (e) => {
+  console.log(e.target.value, '防抖')
+}
+const beforeFun = (e) => {
+  console.log(e.target.value, '不防抖')
+}
+
+const { x, y } = useMouse()
+const color = ref('#617373')
 const uploadFile = () => {
   const uploadFileEle = document.querySelector('#uploadFile') as HTMLInputElement
   if (!uploadFileEle?.files?.length) return
