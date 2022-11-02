@@ -4,7 +4,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-09-27 14:32:48
- * @LastEditTime: 2022-09-28 17:08:46
+ * @LastEditTime: 2022-11-02 14:49:24
 -->
 <template>
   <component
@@ -13,28 +13,38 @@
     :prop="props.prop"
     v-bind="calFormItemConfig"
   >
-    <slot v-bind="props">
-      <template v-if="props.cols">
-        <el-col
-          :span="item.span"
-          :key="index"
-          v-for="(item,index) in props.cols"
-        >
-          <form-item
-            v-model="props.formState[item.prop as string]"
-            :form-state="props.formState"
-            v-bind="item"
-          />
-        </el-col>
-      </template>
+    <!-- 嵌套表单项 -->
+    <template v-if="props.cols">
+      <el-col
+        :span="item.span"
+        :key="index"
+        v-for="(item,index) in props.cols"
+      >
+        <form-item
+          v-model="props.formState[item.prop as string]"
+          :form-state="props.formState"
+          v-bind="item"
+        />
+      </el-col>
+    </template>
 
-      <component
-        v-else
-        :is="calItem"
-        v-model="calValue"
-        v-bind="calConfig"
-      />
-    </slot>
+    <!-- 单个表单项 -->
+    <component
+      v-else
+      :is="calItem"
+      v-model="calValue"
+      v-bind="calConfig"
+    >
+      <!-- select options -->
+      <template v-if="props.options">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.label"
+        />
+      </template>
+    </component>
   </component>
 </template>
 
@@ -92,6 +102,8 @@ const props = withDefaults(defineProps<MyFormItemProps>(), {
   required: undefined,
   events: {}
 })
+
+// 表单组件，处理嵌套等情况
 const wrapperComponent = computed(() => {
   if (props.noFormItem || props.ui === 'wrapper') {
     return AppWrapper
@@ -101,16 +113,21 @@ const wrapperComponent = computed(() => {
   }
   return 'el-form-item'
 })
+
+// 表单项
 const calItem = computed(() => {
   return map[props.ui] || props.ui
 })
+
+// 表单value
 const calValue = computed({
   get: () => props.modelValue,
   set: (val: any) => {
-    console.log(val)
     emit('update:modelValue', val)
   }
 })
+
+// 表单配置
 const calConfig = computed(() => {
   const triggerText = props.ui === 'input' ? '请输入' : '请选择'
   return {
@@ -120,12 +137,14 @@ const calConfig = computed(() => {
     placeholder: `${triggerText}${props.label}`
   }
 })
+
 type ruleItem = {
   required?: boolean,
   message?: string,
   type?: string,
   trigger?:string
 }
+
 const generateRules = computed(() => {
   const triggerText = props.ui === 'input' ? '请输入' : '请选择'
   const trigger = props.ui === 'input' ? 'blur' : 'change'
@@ -168,12 +187,14 @@ const generateRules = computed(() => {
   }
   return list
 })
+
 const calFormItemConfig = computed(() => {
   return {
     rules: generateRules.value.length ? generateRules.value : undefined,
     ...props.formItemConfig
   }
 })
+
 </script>
 <style lang='scss' scoped>
 </style>
