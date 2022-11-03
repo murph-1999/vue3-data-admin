@@ -32,8 +32,11 @@ specifiers:
   vite-plugin-eslint: ^1.5.2
   vite-plugin-mock: ^2.9.6
   vue: ^3.2.25
+  vue-draggable-next: ^2.1.1
+  vue-draggable-resizable-gorkys: ^2.4.8
   vue-router: ^4.0.14
   vue-tsc: ^0.29.8
+  vuedraggable: ^2.24.3
   vuex: ^4.0.2
 
 dependencies:
@@ -46,7 +49,10 @@ dependencies:
   pinia: 2.0.19_j6bzmzd4ujpabbp5objtwxyjp4
   sass: 1.54.4
   vue: 3.2.37
+  vue-draggable-next: 2.1.1_vue@3.2.37
+  vue-draggable-resizable-gorkys: 2.4.8
   vue-router: 4.1.3_vue@3.2.37
+  vuedraggable: 2.24.3
   vuex: 4.0.2_vue@3.2.37
 
 devDependencies:
@@ -1705,6 +1711,12 @@ packages:
     dependencies:
       safe-buffer: 5.1.2
     dev: true
+
+  /core-js/2.6.12:
+    resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
+    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+    requiresBuild: true
+    dev: false
 
   /cosmiconfig-typescript-loader/2.0.2_x2utdhayajzrh747hktprshhby:
     resolution: {integrity: sha512-KmE+bMjWMXJbkWCeY4FJX/npHuZPNr9XF9q9CIQ/bpFwi1qHfCmSiKarrCcRa0LO4fWjk93pVoeRtJAkTGcYNw==}
@@ -4087,6 +4099,10 @@ packages:
       is-fullwidth-code-point: 4.0.0
     dev: true
 
+  /sortablejs/1.10.2:
+    resolution: {integrity: sha512-YkPGufevysvfwn5rfdlGyrGjt7/CRHwvRPogD/lC+TnvcN29jDpCifKP+rBqf+LRldfXSTh+0CGLcSg0VIxq3A==}
+    dev: false
+
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -4689,6 +4705,22 @@ packages:
       vue: 3.2.37
     dev: false
 
+  /vue-draggable-next/2.1.1_vue@3.2.37:
+    resolution: {integrity: sha512-f5lmA7t6LMaL4viR7dU30zzvqJzaKQs0ymL0Jy9UDT9uiZ2tXF3MzPzEvpTH2UODXZJkT+SnjeV1fXHMsgXLYA==}
+    peerDependencies:
+      sortablejs: ^1.14.0
+      vue: ^3.2.2
+    dependencies:
+      vue: 3.2.37
+    dev: false
+
+  /vue-draggable-resizable-gorkys/2.4.8:
+    resolution: {integrity: sha512-DjhelFtRN1cy/AVpYbxlhmTTC5KwLvU490nUZzKp05kMddhzu5TBrBEeYo/9rhmdsrSkxjQguyRvF6IYumw9yw==}
+    engines: {node: '>= 4.0.0', npm: '>= 3.0.0'}
+    dependencies:
+      core-js: 2.6.12
+    dev: false
+
   /vue-eslint-parser/8.3.0_eslint@7.32.0:
     resolution: {integrity: sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -4735,6 +4767,12 @@ packages:
       '@vue/runtime-dom': 3.2.37
       '@vue/server-renderer': 3.2.37_vue@3.2.37
       '@vue/shared': 3.2.37
+
+  /vuedraggable/2.24.3:
+    resolution: {integrity: sha512-6/HDXi92GzB+Hcs9fC6PAAozK1RLt1ewPTLjK0anTYguXLAeySDmcnqE8IC0xa7shvSzRjQXq3/+dsZ7ETGF3g==}
+    dependencies:
+      sortablejs: 1.10.2
+    dev: false
 
   /vuex/4.0.2_vue@3.2.37:
     resolution: {integrity: sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==}

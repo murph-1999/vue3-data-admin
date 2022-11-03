@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-07-31 12:40:19
- * @LastEditTime: 2022-09-01 16:32:03
+ * @LastEditTime: 2022-10-26 15:23:00
 -->
 <template>
   <el-pagination
@@ -13,6 +13,7 @@
     :page-count="props.listCount"
     layout="total, sizes,prev, pager, next, jumper"
     :page-sizes="[2,3,4]"
+
     @size-change="handleSizeChange"
     @current-change="handleCurrentChange"
   />
@@ -41,7 +42,9 @@ const props = defineProps({
   //   type: Object as PropType<{a:string, b:number}>,
   //   required: true
   // }
+
 })
+
 // interface PropsType{
 //   page:number,
 //   limit:number,
@@ -59,6 +62,7 @@ interface EmitType {
   (e:'update:page', page: number, a:string): void
   (e:'update:limit', limit: number): void
 }
+
 const emit = defineEmits<EmitType>()
 const handleSizeChange = (page: number) => {
   emit('update:page', 12, '123')

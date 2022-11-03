@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-20 15:27:17
- * @LastEditTime: 2022-08-20 16:11:43
+ * @LastEditTime: 2022-11-03 16:53:26
  */
 import { defineStore } from 'pinia'
 import { store } from '@/store'
@@ -22,6 +22,7 @@ export const useConfigStore = defineStore({
 })
 
 // 在组件setup函数外使用
+// reference https://pinia.vuejs.org/zh/core-concepts/outside-component-usage.html
 export function useUserStoreWithOut () {
   return useConfigStore(store)
 }

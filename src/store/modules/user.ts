@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-19 16:02:23
- * @LastEditTime: 2022-09-01 10:17:49
+ * @LastEditTime: 2022-11-03 16:52:11
  */
 import { type RouteRecordRaw } from 'vue-router'
 import { defineStore } from 'pinia'
@@ -93,14 +93,16 @@ export const useUserStore = defineStore({
     },
     /** 登出 */
     async logout () {
-      await logout()
+      const data = await logout()
       this.resetToken()
       resetRouter()
+      return { data }
     }
   }
 })
 
 // 在组件setup函数外使用
+// reference https://pinia.vuejs.org/zh/core-concepts/outside-component-usage.html
 export function useUserStoreWithOut () {
   return useUserStore(store)
 }

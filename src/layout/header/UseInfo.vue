@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-07-30 17:29:50
- * @LastEditTime: 2022-09-01 15:09:38
+ * @LastEditTime: 2022-11-03 15:23:17
 -->
 <template>
   <el-dropdown>
@@ -22,10 +22,12 @@
 <script lang='ts' setup>
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
-// import { useUserStore } from '@/store/modules/user'
+import { useUserStore } from '@/store/modules/user'
+import { to } from '@/utils/awaitTo'
 
 const router = useRouter()
-// const store = useUserStore()
+const userStore = useUserStore()
+
 const handleLogout = () => {
   ElMessageBox.confirm(
     '确定退出登录吗',
@@ -36,15 +38,21 @@ const handleLogout = () => {
       type: 'warning'
     }
   )
-    .then(() => {
-      // 退出登录接口
-      router.push({ name: 'login' })
-      // 清除用户信息
-      // store.commit('setUser', null)
-      ElMessage({
-        type: 'success',
-        message: '退出登录成功'
-      })
+    .then(async () => {
+      const [err] = await to(userStore.logout())
+      if (err) {
+        ElMessage({
+          type: 'error',
+          message: '退出登录失败'
+        })
+      } else {
+        router.push({ name: 'Login' })
+
+        ElMessage({
+          type: 'success',
+          message: '退出登录成功'
+        })
+      }
     })
     .catch(() => {
       ElMessage({

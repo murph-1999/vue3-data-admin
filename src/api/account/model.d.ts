@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-16 17:57:54
- * @LastEditTime: 2022-08-29 19:51:31
+ * @LastEditTime: 2022-11-03 15:41:45
  */
 declare namespace API {
   type ILoginInfo={
@@ -13,7 +13,6 @@ declare namespace API {
     introduction: string
   }
   type Menu = {
-
     id: number;
     parentId: number;
     name: string;

@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-09-27 14:06:03
- * @LastEditTime: 2022-09-28 17:15:06
+ * @LastEditTime: 2022-11-02 14:59:21
 -->
 <template>
   <el-form
@@ -43,12 +43,6 @@
           style="margin-left: auto; margin-right: 20px; order: 2"
           label-width="0"
         >
-          <!-- <el-button
-            type="primary"
-            native-type="submit"
-          >
-            查询
-          </el-button> -->
           <my-button
             type="primary"
             auto-loading
@@ -56,10 +50,9 @@
           >
             查询
           </my-button>
-
-          <el-button native-type="reset">
+          <my-button native-type="reset">
             重置
-          </el-button>
+          </my-button>
         </el-form-item>
       </slot>
     </el-row>
@@ -92,9 +85,6 @@ const formState = ref({})
 const emit = defineEmits(['submit', 'reset'])
 
 const submit = (e, done: () => void = e) => {
-  // if (typeof done === 'undefined') {
-  //   done = e
-  // }
   setTimeout(() => {
     done()
     emit('submit', formState.value)

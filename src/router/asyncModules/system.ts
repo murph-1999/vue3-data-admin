@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-15 15:29:40
- * @LastEditTime: 2022-08-31 15:08:26
+ * @LastEditTime: 2022-10-28 13:07:45
  */
 export default {
   'views/user': () => import('@/views/user/index.vue'),

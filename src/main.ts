@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-17 17:01:18
- * @LastEditTime: 2022-09-21 16:03:10
+ * @LastEditTime: 2022-10-28 11:05:37
  */
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -14,7 +14,7 @@ import { setupDirectives } from '@/plugins/directives'
 import './styles/index.scss'
 import elementPlus from './plugins/element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-
+// 导入默认样式
 const app = createApp(App)
 function setupPlugins () {
   // 注册全局自定义组件,
@@ -30,7 +30,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 async function setupApp () {
   setupStore(app)
-
   await setupRouter(app)
   app.use(elementPlus)
   app.mount('#app')

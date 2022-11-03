@@ -2,16 +2,18 @@
  * @Description:
  * @version:
  * @Author: Murphy
- * @Date: 2022-08-30 20:37:33
- * @LastEditTime: 2022-11-03 17:45:02
+ * @Date: 2022-11-03 17:48:25
+ * @LastEditTime: 2022-11-03 17:48:55
 -->
 <template>
   <div>
-    用户管理
+    <ModuleDraggable />
   </div>
 </template>
 
 <script lang='ts' setup>
+
+import ModuleDraggable from '@/components/basic/Draggable/index.vue'
 
 </script>
 <style lang='scss' scoped>

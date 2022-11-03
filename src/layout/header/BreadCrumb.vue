@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-24 15:53:48
- * @LastEditTime: 2022-09-01 15:31:59
+ * @LastEditTime: 2022-11-03 14:02:00
 -->
 <template>
   <el-breadcrumb separator="/">
@@ -12,9 +12,9 @@
       :key="item?.name"
     >
       <el-breadcrumb-item>
-        {{ item.meta?.title }}
+        {{ item?.meta?.title }}
         <template
-          v-if="item.children?.length"
+          v-if="item?.children?.length"
           #overlay
         >
           <el-menu :default-active="activeIndex">

@@ -3,10 +3,9 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-31 10:41:52
- * @LastEditTime: 2022-08-31 10:41:53
+ * @LastEditTime: 2022-11-03 14:09:50
  */
 // reference https://github.com/scopsy/await-to-js
-
 /**
  * @param { Promise } promise
  * @param { Object= } errorExt - Additional Information you can pass to the err object

@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-21 12:08:59
- * @LastEditTime: 2022-09-26 14:17:25
+ * @LastEditTime: 2022-10-30 17:27:11
 -->
 <template>
   <h1>{{ msg }}</h1>
@@ -26,7 +26,6 @@ import { ref } from 'vue'
 import Foo from './foo'
 // eslint-disable-next-line no-undef
 defineProps<{ msg: string }>()
-
 const count = ref(0)
 const abc = <h1>abc</h1>
 </script>

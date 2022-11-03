@@ -1,14 +1,16 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { ElMessage } from 'element-plus'
 import { uniqueSlash } from './urlUtils'
+import { useUserStore } from '@/store/modules/user'
 
 // import { store } from '@/store'
+
 /*
  * @Description:
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-01 17:50:05
- * @LastEditTime: 2022-08-29 15:59:58
+ * @LastEditTime: 2022-11-03 16:43:40
  */
 
 export interface RequestOptions {
@@ -36,12 +38,13 @@ const service = axios.create({
 service.interceptors.request.use(function (config) {
   // Do something before request is sent
   // 可以统一设置用户token，token可以放在登录返回信息中
-  // const user = store.state.user
-  // if (user && user.token) {
-  //   if (config && config.headers) {
-  //     config.headers.Authorization = `Bearer ${user.token}`
-  //   }
-  // }
+  const userStore = useUserStore()
+  const token = userStore.getToken
+  if (token) {
+    if (config && config.headers) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+  }
   return config
 }, function (error) {
   // Do something with request error
@@ -57,7 +60,7 @@ service.interceptors.response.use(function (response) {
   // eslint-disable-next-line no-empty
   if (response.data.code && response.data.code !== 200) {
     ElMessage.error(response.data.meta.message || '请求失败，请稍后重试')
-    // 手动范湖ipromise异常, 后面不会再执行
+    // 手动返回promise异常
     return Promise.reject(response.data)
   }
   return response.data
@@ -102,7 +105,6 @@ export const request = async <T = any>(
 
     const fullUrl = `${(isMock ? baseMockUrl! : baseApiUrl!) + config.url}`
     config.url = uniqueSlash(fullUrl)
-    console.log(config.url)
     // if (IS_PROD) {
     //   // 保持api请求的协议与当前访问的站点协议一致
     //   config.url.replace(/^https?:/g, location.protocol);
