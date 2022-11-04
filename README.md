@@ -1,16 +1,68 @@
-# Vue 3 + TypeScript + Vite
+# vue3-data-admin
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+> 基于 vite2.x + vue3.x + element-plus2.x + typescript4.x 的后台管理系统模板
+部分设计参考了 [vite-vue3-admin](https://github.com/buqiyuan/vite-vue3-admin)
 
-## Recommended IDE Setup
+## 安装使用
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+- 获取项目代码
 
-## Type Support For `.vue` Imports in TS
+```bash
+git clone https://github.com/murph-1999/vue3-data-admin
+```
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+- 安装依赖
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+```bash
+cd vue3-data-admin
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+npm install
+
+```
+
+- 运行
+
+```bash
+npm run dev
+```
+
+- 打包
+
+```bash
+npm run build
+```
+
+## 项目目录
+├─vue3-data-admin                 # 根目录
+│  ├─src
+     ├─api                        # api 接口封装
+     ├─assets                     # 需要编译构建的静态资源
+│    ├─components                 # 组件
+│    ├─composables                # 组合式 api 封装
+│    ├─core                       # 一些核心模块
+│    ├─directives                 # 一些指令
+│    ├─enums                      # 枚举值
+│    ├─layout                     # 全局布局
+│    ├─plugins                    # 插件安装，包括自定义组件的注册等
+│    ├─router                     # 路由
+│    ├─store                      # 状态管理
+│    ├─styles                     # 样式文件
+│    ├─types                      # 类型文件
+│    ├─utils                      # 全局方法
+│    ├─views                      # 路由页面
+│    ├─App.vue                    # 项目的根组件
+│    ├─main.ts                    # 创建根 vue 实例
+├─ts.config.ts                    # ts 配置
+├─vite.config.ts                  # vite 配置
+├─README.md                       # README
+
+
+### todolist
+
+- [ ] 动态表单
+- [ ] 可拖拽模块大屏展示
+- [ ] socket.io应用
+- [ ] PDF 导出
+- [ ] 其他...
+
+
