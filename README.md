@@ -1,7 +1,7 @@
 # vue3-data-admin
 
 > 基于 vite2.x + vue3.x + element-plus2.x + typescript4.x 的后台管理系统模板
-部分设计参考了 [vite-vue3-admin](https://github.com/buqiyuan/vite-vue3-admin)
+> 部分设计参考了 [vite-vue3-admin](https://github.com/buqiyuan/vite-vue3-admin)
 
 ## 安装使用
 
@@ -33,6 +33,7 @@ npm run build
 ```
 
 ## 项目目录
+```
 ├─vue3-data-admin                 # 根目录
 │  ├─src
      ├─api                        # api 接口封装
@@ -55,7 +56,7 @@ npm run build
 ├─ts.config.ts                    # ts 配置
 ├─vite.config.ts                  # vite 配置
 ├─README.md                       # README
-
+```
 
 ### todolist
 
