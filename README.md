@@ -3,11 +3,7 @@
 > 基于 vite2.x + vue3.x + element-plus2.x + typescript4.x 的后台管理系统模板
 > 部分设计参考了 [vite-vue3-admin](https://github.com/buqiyuan/vite-vue3-admin)
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
-
-## Type Support For `.vue` Imports in TS
+## 安装使用
 
 - 安装依赖
 
