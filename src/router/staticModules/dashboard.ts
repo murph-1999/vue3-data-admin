@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-30 19:56:51
- * @LastEditTime: 2022-08-30 19:58:45
+ * @LastEditTime: 2022-11-08 16:39:44
  */
 import type { RouteRecordRaw } from 'vue-router'
 import RouterView from '@/layout/routerView/index.vue'
@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'welcome',
-        name: `${moduleName}-welcome`,
+        name: `/${moduleName}/welcome`,
         meta: {
           title: '首页',
           icon: 'icon-shouye'

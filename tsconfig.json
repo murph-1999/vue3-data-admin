@@ -12,11 +12,11 @@
     "isolatedModules": false,
     "esModuleInterop": true,
     "noImplicitAny": false,
-
     "lib": ["esnext", "dom"],
     "types": [
       "node",
-      "webpack-env"
+      "webpack-env",
+      "unplugin-vue-define-options/macros-global"
     ],
     "paths": {
       "@/*":[

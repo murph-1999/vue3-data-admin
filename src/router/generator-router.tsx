@@ -108,6 +108,7 @@ export function filterAsyncRoute (
 export const generatorDynamicRouter = (asyncMenus: API.Menu[]) => {
   try {
     const routeList = filterAsyncRoute(asyncMenus)
+    console.log(asyncMenus, routeList)
     const layout = routes.find((item) => item.name === 'Layout')!
     //  console.log('根据后端返回的权限路由生成', routeList, layout)
     // 给公共路由添加namePath

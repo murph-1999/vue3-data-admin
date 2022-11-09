@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-29 16:13:02
- * @LastEditTime: 2022-08-30 19:21:07
+ * @LastEditTime: 2022-11-09 13:35:32
  */
 export default [
   {
@@ -74,7 +74,7 @@ export default [
     icon: 'icon-shezhi',
     id: 2,
     isShow: true,
-    keepalive: false,
+    keepalive: true,
     name: '用户管理',
     orderNum: 0,
     parentId: null,
@@ -86,7 +86,7 @@ export default [
     icon: 'icon-shezhi',
     id: 3,
     isShow: true,
-    keepalive: false,
+    keepalive: true,
     name: '机构管理',
     orderNum: 0,
     parentId: null,
@@ -99,7 +99,7 @@ export default [
     icon: 'icon-shezhi',
     id: 4,
     isShow: true,
-    keepalive: false,
+    keepalive: true,
     name: '观点管理',
     orderNum: 0,
     parentId: null,
@@ -112,7 +112,7 @@ export default [
     icon: 'icon-shezhi',
     id: 10,
     isShow: true,
-    keepalive: false,
+    keepalive: true,
     name: '股票观点管理',
     orderNum: 0,
     parentId: 4,
@@ -125,7 +125,7 @@ export default [
     icon: 'icon-shezhi',
     id: 11,
     isShow: true,
-    keepalive: false,
+    keepalive: true,
     name: '行业观点管理',
     orderNum: 0,
     parentId: 4,

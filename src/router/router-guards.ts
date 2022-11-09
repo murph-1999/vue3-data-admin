@@ -3,14 +3,16 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-15 11:10:53
- * @LastEditTime: 2022-08-31 10:45:27
+ * @LastEditTime: 2022-11-09 13:37:54
  */
+import { isNavigationFailure } from 'vue-router'
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { LOGIN_NAME, REDIRECT_NAME, type WhiteNameList } from './constant'
 import { Storage } from '@/utils/Storage'
-import type { Router } from 'vue-router'
+import type { Router, RouteLocationNormalized } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
+import { useKeepAliveStore } from '@/store/modules/keepAlive'
 import { ACCESS_TOKEN_KEY } from '@/enums/cacheEnum'
 import { to as _to } from '@/utils/awaitTo'
 
@@ -55,7 +57,41 @@ export function createRouterGuards (router: Router, whiteNameList: WhiteNameList
       }
     }
   })
-  router.afterEach(() => {
+  const getComponentName = (route:RouteLocationNormalized) => {
+    console.log(route.matched.find((item) => item.name === route.name)?.components)
+    return route.matched.find((item) => item.name === route.name)?.components?.default.name
+  }
+  router.afterEach((to, from) => {
+    console.log('to', to)
+    const token = Storage.get(ACCESS_TOKEN_KEY, null)
+    const keepAliveStore = useKeepAliveStore()
+
+    const toComponentName = getComponentName(to)
+    console.log(toComponentName)
+    if (to.meta?.keepAlive) {
+      if (toComponentName) {
+        keepAliveStore.add(toComponentName)
+      } else {
+        console.warn(
+          `${to.fullPath}页面组件的keepAlive为true但未设置组件名，会导致缓存失效，请检查`
+        )
+      }
+    } else {
+      if (toComponentName) {
+        keepAliveStore.remove(toComponentName)
+      }
+    }
+    // 如果进入的是 Redirect 页面，则也将离开页面的缓存清空(刷新页面的操作)
+    if (to.name === REDIRECT_NAME) {
+      const fromCompName = getComponentName(from)
+      fromCompName && keepAliveStore.remove(fromCompName)
+    }
+
+    // 如果用户已登出，则清空所有缓存的组件
+    if (!token) {
+      keepAliveStore.clear()
+    }
+
     nprogress.done()
   })
 

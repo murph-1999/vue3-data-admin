@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-25 22:30:24
- * @LastEditTime: 2022-08-31 10:55:14
+ * @LastEditTime: 2022-11-08 14:20:28
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import outsideLayout from './outsideLayout'
@@ -33,7 +33,7 @@ export const routes: RouteRecordRaw[] = [
   // layout之外的路由
   ...outsideLayout
 ]
-const router = createRouter({
+export const router = createRouter({
   history: createWebHashHistory(''),
   routes
 })

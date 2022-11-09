@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-19 15:39:04
- * @LastEditTime: 2022-09-01 15:34:23
+ * @LastEditTime: 2022-11-08 16:52:02
 -->
 <template>
   <div class="common-layout">
@@ -13,9 +13,7 @@
       </el-aside>
       <el-container>
         <el-header><Header /></el-header>
-        <el-main>
-          <router-view />
-        </el-main>
+        <el-main><tags /></el-main>
         <el-footer>Footer</el-footer>
       </el-container>
     </el-container>
@@ -25,6 +23,7 @@
 <script lang='ts' setup>
 import Menu from './menu/index.vue'
 import Header from './header/index.vue'
+import Tags from './tabs/tabs-view.vue'
 </script>
 <style lang='scss' scoped>
 .el-footer,
@@ -41,6 +40,7 @@ import Header from './header/index.vue'
 }
 .el-main {
   background-color: #e9eef3;
+  padding:0
 }
 .el-container {
   height: 100vh;

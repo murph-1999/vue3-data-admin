@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-24 15:53:48
- * @LastEditTime: 2022-11-03 14:02:00
+ * @LastEditTime: 2022-11-08 13:36:00
 -->
 <template>
   <el-breadcrumb separator="/">
@@ -12,28 +12,33 @@
       :key="item?.name"
     >
       <el-breadcrumb-item>
-        {{ item?.meta?.title }}
-        <template
-          v-if="item?.children?.length"
-          #overlay
-        >
-          <el-menu :default-active="activeIndex">
-            <el-sub-menu>
+        <span v-if="!item?.children?.length"> {{ item?.meta?.title }}</span>
+
+        <el-dropdown v-else>
+          <span class="el-dropdown-link">
+            {{ item?.meta?.title }}
+            <el-icon class="el-icon--right">
+              <arrow-down />
+            </el-icon>
+          </span>
+          <template
+            #dropdown
+          >
+            <el-dropdown-menu>
               <template
                 v-for="childItem in item?.children"
                 :key="childItem.name"
               >
-                <el-menu-item
+                <el-dropdown-item
                   v-if="!childItem.meta?.hideInMenu"
-                  :index="childItem.name"
                   @click="clickMenuItem(childItem)"
                 >
                   {{ childItem.meta?.title }}
-                </el-menu-item>
+                </el-dropdown-item>
               </template>
-            </el-sub-menu>
-          </el-menu>
-        </template>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </el-breadcrumb-item>
     </template>
   </el-breadcrumb>
@@ -53,31 +58,55 @@ activeIndex.value = route.path
 const menus = computed(() => {
   if (route.meta?.namePath) {
     let children = userStore.menus
-    const paths = route.meta.namePath?.map((item) => {
+    const paths = (route.meta.namePath as string[]).map((item) => {
       const a = children.find((n) => n.name === item)
       children = a?.children || []
       return a
     })
     return [
-      // {
-      //   name: '__index',
-      //   meta: {
-      //     title: 'vue'
-      //   },
-      //   children: userStore.menus
-      // },
+      {
+        name: '__index',
+        meta: {
+          title: 'Dashboard'
+        },
+        children: userStore.menus
+      },
       ...paths
     ]
   }
   return route.matched
 })
 
+const findLastChild = (route?: RouteRecordRaw) => {
+  if (typeof route?.redirect === 'object') {
+    const redirectValues = Object.values(route.redirect)
+    if (route?.children?.length) {
+      const target = route.children.find((n) =>
+        redirectValues.some((m) => [n.name, n.path, n.meta?.fullPath].some((v) => v === m))
+      )
+      return findLastChild(target)
+    }
+    return redirectValues.find((n) => typeof n === 'string')
+  } else if (typeof route?.redirect === 'string') {
+    if (route?.children?.length) {
+      const target = route.children.find((n) =>
+        [n.name, n.path, n.meta?.fullPath].some((m) => m === route?.redirect)
+      )
+      return findLastChild(target)
+    }
+    return route?.redirect
+  }
+  return route
+}
+
 const clickMenuItem = (item:RouteRecordRaw) => {
-  if (item?.name === route.name) return
-  if (/http(s)?:/.test(item?.name as string)) {
-    window.open(item.name as string)
-  } else if (item?.name) {
-    router.push({ name: item.name })
+  const lastChild = findLastChild(item)
+
+  if (lastChild?.name === route.name) return
+  if (/http(s)?:/.test(lastChild?.name as string)) {
+    window.open(lastChild.name as string)
+  } else if (lastChild?.name) {
+    router.push({ name: lastChild.name })
   }
 }
 </script>

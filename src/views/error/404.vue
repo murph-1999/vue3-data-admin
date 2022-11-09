@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-18 10:55:41
- * @LastEditTime: 2022-08-31 15:13:19
+ * @LastEditTime: 2022-11-08 15:03:59
 -->
 <template>
   <div class="page-container">
@@ -17,10 +17,6 @@
         回到首页
       </RouterLink>
     </div>
-    <img
-      src="../../assets/404.gif"
-      alt=""
-    >
   </div>
 </template>
 
@@ -33,11 +29,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
   .page-container {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
     justify-content: center;
     align-items: center;
+    height: 100%;
   }
 </style>

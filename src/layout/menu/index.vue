@@ -4,7 +4,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-19 16:35:01
- * @LastEditTime: 2022-08-31 16:05:23
+ * @LastEditTime: 2022-11-09 13:47:27
 -->
 <template>
   <logo
@@ -19,7 +19,6 @@
     :collapse="configStore.isCollapse"
     ref="elMenu"
     router
-    @select="menuSelect"
   >
     <template
       v-for="item in menus"
@@ -35,23 +34,18 @@
 import { computed, watch, ref } from 'vue'
 import logo from './components/menuLogo.vue'
 import MenuItem from './components/menuItem.vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { useConfigStore } from '@/store/modules/config'
 import { LOGIN_NAME } from '@/router/constant'
 
 const configStore = useConfigStore()
 const userStore = useUserStore()
-const router = useRouter()
 const route = useRoute()
-
 const activeIndex = ref('')
 
 activeIndex.value = route.path
-console.log(route.path)
-const menuSelect = (index: string) => {
-  router.push({ name: index })
-}
+
 const isCollapse = ref(true)
 
 const menus = computed(() => {
