@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-08-30 19:56:51
- * @LastEditTime: 2022-11-08 16:39:44
+ * @LastEditTime: 2022-11-10 14:20:55
  */
 import type { RouteRecordRaw } from 'vue-router'
 import RouterView from '@/layout/routerView/index.vue'

@@ -3,7 +3,7 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-04-25 22:30:24
- * @LastEditTime: 2022-11-08 14:20:28
+ * @LastEditTime: 2022-11-10 14:21:00
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import outsideLayout from './outsideLayout'

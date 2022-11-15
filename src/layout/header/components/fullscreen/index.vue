@@ -3,11 +3,11 @@
  * @version:
  * @Author: Murphy
  * @Date: 2022-05-24 16:50:12
- * @LastEditTime: 2022-09-01 15:08:37
+ * @LastEditTime: 2022-11-15 11:12:18
 -->
 <template>
   <el-icon @click="toggleFullScreen">
-    <Football />
+    <FullScreen />
   </el-icon>
 </template>
 
